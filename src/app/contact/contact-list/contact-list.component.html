@@ -1,7 +1,7 @@
 <h1>Contacts</h1>
 
 <mat-select (selectionChange)="onSelectionChange($event)">
-  <mat-option [value]="undefined">All</mat-option>
+  <mat-option [value]="''">All</mat-option>
   <mat-option 
     *ngFor="let company of companies$ | async"
     [value]="company.id"

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection, DocumentChangeAction, CollectionReference } from '@angular/fire/firestore';
 import { Contact } from '../models/contact';
 import { Observable, from, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators'
@@ -33,6 +33,32 @@ export class ContactService {
         }),
         catchError(this.errorHandler)
       );
+  }
+
+  getContactsByCompanyIdObservable(companyId: string): Observable<Contact[]> {
+    if (!companyId) {
+      return this.getContactsObservable();
+    }
+    
+    const filteredContacts = this.db.collection<Contact>(
+      'contacts', 
+      (ref: CollectionReference) => ref.where('companyId', '==', companyId)
+    );
+    
+    return filteredContacts.snapshotChanges()
+    .pipe(
+      map((items: DocumentChangeAction<Contact>[]): Contact[] => {
+        return items.map((item: DocumentChangeAction<Contact>): Contact => {
+          return {
+            id: item.payload.doc.id,
+            name: item.payload.doc.data().name,
+            phone: item.payload.doc.data().phone,
+            companyId: item.payload.doc.data().companyId
+          };
+        });
+      }),
+      catchError(this.errorHandler)
+    );
   }
 
    getContactObservable(id: string): Observable<Contact> {

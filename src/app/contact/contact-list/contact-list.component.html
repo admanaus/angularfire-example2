@@ -1,4 +1,15 @@
 <h1>Contacts</h1>
+
+<mat-select (selectionChange)="onSelectionChange($event)">
+  <mat-option [value]="undefined">All</mat-option>
+  <mat-option 
+    *ngFor="let company of companies$ | async"
+    [value]="company.id"
+  >
+    {{ company.name }}
+  </mat-option>
+</mat-select>
+
 <mat-card 
 *ngFor="let contact of contacts$ | async" 
 fxLayout="row" 

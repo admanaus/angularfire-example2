@@ -5,8 +5,11 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-    <mat-select>
-      <mat-option *ngFor="let company of companies$ | async">
+    <mat-select [(ngModel)]="contact.companyId">
+      <mat-option 
+        *ngFor="let company of companies$ | async"
+        [value]="company.id"
+      >
         {{ company.name }}
       </mat-option>
     </mat-select>
@@ -19,4 +22,5 @@
 </mat-card>
 <mat-card>
   <pre>{{ companies$ | async | json }}</pre>
+  <pre>{{ contact$ | async | json }}</pre>
 </mat-card>

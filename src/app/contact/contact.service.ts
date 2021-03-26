@@ -43,6 +43,7 @@ export class ContactService {
    }
 
   saveContact(contact: Contact) {
+    console.log('contact on save', contact)
     this.contactsRef.add(contact)
       .then(_ => console.log('success on add'))
       .catch(error => console.log('add', error));

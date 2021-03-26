@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { CompanyListComponent } from './company/company-list/company-list.component';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
 import { environment } from 'src/environments/environment';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
 import { ContactEditComponent } from './contact/contact-edit/contact-edit.component';
@@ -40,7 +41,8 @@ import { ContactEditComponent } from './contact/contact-edit/contact-edit.compon
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

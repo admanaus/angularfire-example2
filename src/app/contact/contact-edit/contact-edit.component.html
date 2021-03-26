@@ -3,9 +3,20 @@
   <mat-form-field>
     <input type="text" matInput [(ngModel)]="contact.name">
   </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-select>
+      <mat-option *ngFor="let company of companies$ | async">
+        {{ company.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <mat-card-actions align="end">
     <button *ngIf="id === 'new'" mat-raised-button color="primary" (click)="saveContact(contact)">Save (set)</button>
     <button *ngIf="id !== 'new'" mat-raised-button (click)="editContact(contact)">Edit (update)</button>
     <button mat-raised-button (click)="deleteContact()">Delete</button>
   </mat-card-actions>
+</mat-card>
+<mat-card>
+  <pre>{{ companies$ | async | json }}</pre>
 </mat-card>

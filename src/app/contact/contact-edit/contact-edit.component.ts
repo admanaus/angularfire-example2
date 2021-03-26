@@ -3,6 +3,8 @@ import { Observable, of } from 'rxjs';
 import { Contact } from 'src/app/models/contact';
 import { ContactService } from '../contact.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CompanyService } from 'src/app/company/company.service';
+import { Company } from 'src/app/models/company';
 
 @Component({
   selector: 'app-contact-edit',
@@ -12,9 +14,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ContactEditComponent implements OnInit {
 
   contact$: Observable<Contact | undefined>;
+  companies$: Observable<Company[]>;
 
   constructor(
     private contactService: ContactService,
+    private companyService: CompanyService,
     private activatedRoute: ActivatedRoute,
     private router: Router) { 
       if (!this.isNew) {
@@ -22,6 +26,7 @@ export class ContactEditComponent implements OnInit {
       } else {
         this.contact$ = of({}) as Observable<Contact>;
       }
+      this.companies$ = this.companyService.getCompaniesObservable();
   }
 
   ngOnInit(): void {

@@ -9,27 +9,30 @@ import { AngularFireModule } from '@angular/fire';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CompanyEditComponent } from './company/company-edit/company-edit.component';
-import { CompanyService } from './company/company.service';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
-import { environment } from 'src/environments/environment';
 import { CompanyListComponent } from './company/company-list/company-list.component';
 import {MatIconModule} from '@angular/material/icon';
+import { environment } from 'src/environments/environment';
+import { ContactListComponent } from './contact/contact-list/contact-list.component';
+import { ContactEditComponent } from './contact/contact-edit/contact-edit.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CompanyEditComponent,
-    CompanyListComponent
+    CompanyListComponent,
+    ContactEditComponent,
+    ContactListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase), 
+    AngularFireModule.initializeApp(environment.firebaseConfig), 
     AngularFirestoreModule,
     FlexLayoutModule,
     MatToolbarModule,
@@ -39,7 +42,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatIconModule
   ],
-  providers: [CompanyService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

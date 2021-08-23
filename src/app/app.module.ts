@@ -33,7 +33,7 @@ import { ContactEditComponent } from './contact/contact-edit/contact-edit.compon
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig), 
+    AngularFireModule.initializeApp(environment.firebase), 
     AngularFirestoreModule,
     FlexLayoutModule,
     MatToolbarModule,
